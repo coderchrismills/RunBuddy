@@ -58,9 +58,6 @@
                                         </items>
                                         <color key="backgroundColor" name="Run"/>
                                         <edgeInsets key="margins" left="8" right="4" top="4" bottom="4"/>
-                                        <connections>
-                                            <segue destination="AgC-eL-Hgc" kind="push" id="W9D-L3-L7P"/>
-                                        </connections>
                                     </group>
                                     <connections>
                                         <outlet property="nonRunDescriptionGroup" destination="f1e-Ma-O4n" id="2fb-3n-oJH"/>
@@ -86,28 +83,54 @@
             </objects>
             <point key="canvasLocation" x="-42" y="345"/>
         </scene>
-        <!--Interface Controller-->
+        <!--Run-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc">
+                <controller identifier="Run" id="AgC-eL-Hgc" customClass="RunInterfaceController" customModule="RunBuddy_WatchKit_Extension">
                     <items>
-                        <group width="1" alignment="left" hidden="YES" layout="vertical" id="En2-la-7pS">
+                        <group width="1" alignment="left" layout="vertical" spacing="8" id="En2-la-7pS">
                             <items>
-                                <label alignment="left" text="Run: 5 Min" id="JAn-Pe-38j"/>
-                                <label alignment="left" text="Walk: 1 Min" id="gfM-G7-U2z"/>
-                                <label alignment="left" text="Repeat: 10x" id="25P-bh-71f"/>
+                                <group width="1" alignment="left" id="ek5-ix-lp3">
+                                    <items>
+                                        <imageView width="22" height="1" alignment="left" image="run" contentMode="scaleAspectFit" id="SWz-UC-yOv"/>
+                                        <label alignment="left" text="5 Minutes" id="JAn-Pe-38j"/>
+                                    </items>
+                                </group>
+                                <group width="1" alignment="left" id="9UH-bV-3sF">
+                                    <items>
+                                        <imageView width="22" height="1" alignment="left" image="walk" contentMode="scaleAspectFit" id="EVe-v8-6kW"/>
+                                        <label alignment="left" text="1 Minute" id="gfM-G7-U2z"/>
+                                    </items>
+                                </group>
+                                <group width="1" alignment="left" id="C6G-ri-QU3">
+                                    <items>
+                                        <imageView width="22" height="1" alignment="left" image="stopwatch.fill" catalog="system" contentMode="scaleAspectFit" id="0AC-gy-rbh">
+                                            <color key="tintColor" name="Text"/>
+                                        </imageView>
+                                        <label alignment="left" text="10x" id="25P-bh-71f"/>
+                                    </items>
+                                </group>
+                                <separator alignment="left" id="YEF-uX-5Ei">
+                                    <color key="color" name="Accent"/>
+                                </separator>
                                 <button width="1" alignment="left" title="Go!" id="TkM-kQ-cfN">
                                     <color key="titleColor" name="Text"/>
                                     <color key="backgroundColor" name="Run"/>
+                                    <connections>
+                                        <action selector="runButtonPressed" destination="AgC-eL-Hgc" id="FDe-6X-Rae"/>
+                                    </connections>
                                 </button>
                             </items>
+                            <edgeInsets key="margins" left="0.0" right="0.0" top="8" bottom="0.0"/>
                         </group>
-                        <group width="1" height="1" alignment="center" layout="vertical" id="HVX-3z-z05">
+                        <group width="1" height="1" alignment="center" hidden="YES" layout="vertical" id="HVX-3z-z05">
                             <items>
                                 <label alignment="left" text="WALK" textAlignment="center" id="uxP-Yq-2TE">
+                                    <color key="textColor" name="Text"/>
                                     <fontDescription key="font" style="UICTFontTextStyleTitle1"/>
                                 </label>
-                                <timer alignment="left" textAlignment="center" id="4cl-1f-NNp">
+                                <timer alignment="left" textAlignment="center" format="abbreviated" id="4cl-1f-NNp">
+                                    <color key="textColor" name="Text"/>
                                     <fontDescription key="font" style="UICTFontTextStyleTitle2"/>
                                     <calendarUnit key="units" minute="YES" second="YES"/>
                                 </timer>
@@ -117,10 +140,24 @@
                                 <button width="1" alignment="left" title="Pause" id="vQW-2U-gSR">
                                     <color key="titleColor" name="Text"/>
                                     <color key="backgroundColor" name="Rest"/>
+                                    <connections>
+                                        <action selector="pauseButtonPressed" destination="AgC-eL-Hgc" id="aGp-1r-HWh"/>
+                                    </connections>
                                 </button>
                             </items>
+                            <edgeInsets key="margins" left="0.0" right="0.0" top="8" bottom="0.0"/>
                         </group>
                     </items>
+                    <connections>
+                        <outlet property="activeGroup" destination="HVX-3z-z05" id="b19-ie-AFf"/>
+                        <outlet property="idleGroup" destination="En2-la-7pS" id="DCL-fi-6xq"/>
+                        <outlet property="repeatImage" destination="0AC-gy-rbh" id="ias-0L-XIh"/>
+                        <outlet property="repeatLabel" destination="25P-bh-71f" id="lyM-kH-u4b"/>
+                        <outlet property="runLabel" destination="JAn-Pe-38j" id="oP8-wt-TEV"/>
+                        <outlet property="timeLabel" destination="4cl-1f-NNp" id="Brq-3g-7v0"/>
+                        <outlet property="titleLabel" destination="uxP-Yq-2TE" id="fLu-fb-93u"/>
+                        <outlet property="walkLabel" destination="gfM-G7-U2z" id="v0h-Ub-Ivr"/>
+                    </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="232" y="345"/>
@@ -160,15 +197,16 @@
     <resources>
         <image name="map.fill" catalog="system" width="64" height="56"/>
         <image name="run" width="100" height="100"/>
+        <image name="stopwatch.fill" catalog="system" width="62" height="64"/>
         <image name="walk" width="100" height="100"/>
         <namedColor name="Accent">
-            <color red="0.023529411764705882" green="0.51372549019607838" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.024000000208616257" green="0.51399999856948853" blue="0.80000001192092896" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Rest">
             <color red="0.24705882352941178" green="0.50980392156862742" blue="0.42745098039215684" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Run">
-            <color red="0.75294117647058822" green="0.19607843137254902" blue="0.12941176470588237" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.75300002098083496" green="0.19599999487400055" blue="0.1289999932050705" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Text">
             <color red="0.96862745098039216" green="0.96862745098039216" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

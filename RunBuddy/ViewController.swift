@@ -19,24 +19,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         collectionView.dataSource = self
         collectionView.delegate = self
-
-        if let path = Bundle.main.path(forResource: "run", ofType: "json") {
-            do {
-                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-                let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
-                if let jsonResult = jsonResult as? Dictionary<String, AnyObject>, let runs = jsonResult["runs"] as? [Any] {
-                    for runJson in runs {
-                        if let runDictionary = runJson as? Dictionary<String, AnyObject> {
-                            let run = Run(dict: runDictionary)
-                            plan.append(run)
-                        }
-                    }
-                }
-            } catch {
-                // handle error
-                print(error.localizedDescription)
-            }
-        }
+        plan = Run.getAllRuns()
     }
 }
 

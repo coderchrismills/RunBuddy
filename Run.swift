@@ -56,4 +56,25 @@ struct Run {
         self.mileTarget = dict["mileTarget"] as? Int ?? 0
     }
 
+    static func getAllRuns() -> [Run] {
+        var runs: [Run] = []
+        if let path = Bundle.main.path(forResource: "run", ofType: "json") {
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+                let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
+                if let jsonResult = jsonResult as? Dictionary<String, AnyObject>, let runsJson = jsonResult["runs"] as? [Any] {
+                    for runJson in runsJson {
+                        if let runDictionary = runJson as? Dictionary<String, AnyObject> {
+                            let run = Run(dict: runDictionary)
+                            runs.append(run)
+                        }
+                    }
+                }
+            } catch {
+                // handle error
+                print(error.localizedDescription)
+            }
+        }
+        return runs
+    }
 }

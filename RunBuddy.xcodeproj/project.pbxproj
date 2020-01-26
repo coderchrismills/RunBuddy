@@ -30,6 +30,7 @@
 		83A741C723DD507F0024F6C8 /* UIColor+Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A741C623DD507F0024F6C8 /* UIColor+Asset.swift */; };
 		83A741C823DD507F0024F6C8 /* UIColor+Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A741C623DD507F0024F6C8 /* UIColor+Asset.swift */; };
 		83A741CB23DD6A1D0024F6C8 /* RunRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A741C923DD6A1D0024F6C8 /* RunRowController.swift */; };
+		83A741CD23DE11940024F6C8 /* RunInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A741CC23DE11940024F6C8 /* RunInterfaceController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +100,7 @@
 		83A741C323DD2E480024F6C8 /* Run.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Run.swift; sourceTree = "<group>"; };
 		83A741C623DD507F0024F6C8 /* UIColor+Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Asset.swift"; sourceTree = "<group>"; };
 		83A741C923DD6A1D0024F6C8 /* RunRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunRowController.swift; sourceTree = "<group>"; };
+		83A741CC23DE11940024F6C8 /* RunInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunInterfaceController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,13 +172,14 @@
 			isa = PBXGroup;
 			children = (
 				83A741A623DD20870024F6C8 /* InterfaceController.swift */,
+				83A741C923DD6A1D0024F6C8 /* RunRowController.swift */,
+				83A741CC23DE11940024F6C8 /* RunInterfaceController.swift */,
 				83A741A823DD20870024F6C8 /* ExtensionDelegate.swift */,
 				83A741AA23DD20870024F6C8 /* NotificationController.swift */,
 				83A741AC23DD20870024F6C8 /* ComplicationController.swift */,
 				83A741AE23DD20880024F6C8 /* Assets.xcassets */,
 				83A741B023DD20880024F6C8 /* Info.plist */,
 				83A741B123DD20880024F6C8 /* PushNotificationPayload.apns */,
-				83A741C923DD6A1D0024F6C8 /* RunRowController.swift */,
 			);
 			path = "RunBuddy WatchKit Extension";
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83A741AB23DD20870024F6C8 /* NotificationController.swift in Sources */,
+				83A741CD23DE11940024F6C8 /* RunInterfaceController.swift in Sources */,
 				83A741AD23DD20870024F6C8 /* ComplicationController.swift in Sources */,
 				83A741C823DD507F0024F6C8 /* UIColor+Asset.swift in Sources */,
 				83A741CB23DD6A1D0024F6C8 /* RunRowController.swift in Sources */,

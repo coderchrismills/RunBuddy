@@ -9,39 +9,21 @@
 import WatchKit
 import Foundation
 
-
 class InterfaceController: WKInterfaceController {
     @IBOutlet weak var tableView: WKInterfaceTable!
     
-    var plan: [Run] = []
+    var runs: [Run] = []
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
-        // Configure interface objects here.
-        if let path = Bundle.main.path(forResource: "run", ofType: "json") {
-            do {
-                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-                let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
-                if let jsonResult = jsonResult as? Dictionary<String, AnyObject>, let runs = jsonResult["runs"] as? [Any] {
-                    for runJson in runs {
-                        if let runDictionary = runJson as? Dictionary<String, AnyObject> {
-                            let run = Run(dict: runDictionary)
-                            plan.append(run)
-                        }
-                    }
-                }
-            } catch {
-                // handle error
-                print(error.localizedDescription)
-            }
-        }
+        runs = Run.getAllRuns()
         
-        tableView.setNumberOfRows(plan.count, withRowType: "RunRow")
+        tableView.setNumberOfRows(runs.count, withRowType: "RunRow")
         
         for index in 0..<tableView.numberOfRows {
             guard let controller = tableView.rowController(at: index) as? RunRowController else { continue }
-            controller.run = plan[index]
+            controller.run = runs[index]
         }
     }
     
@@ -54,5 +36,12 @@ class InterfaceController: WKInterfaceController {
         // This method is called when watch view controller is no longer visible
         super.didDeactivate()
     }
-
+    
+    override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
+        let run = runs[rowIndex]
+        if run.mileTarget == 0 && run.repeatCount == 0 {
+            return
+        }
+        pushController(withName: "Run", context: run)
+    }
 }
