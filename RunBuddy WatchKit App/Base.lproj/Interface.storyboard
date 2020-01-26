@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="15705" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GC2-rr-foD">
+    <device id="watch38"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="15501"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+    </dependencies>
+    <scenes>
+        <!--Interface Controller-->
+        <scene sceneID="NqE-mf-l25">
+            <objects>
+                <controller id="GC2-rr-foD" customClass="InterfaceController" customModule="RunBuddy_WatchKit_Extension">
+                    <items>
+                        <table alignment="left" id="JEj-EF-Ajq">
+                            <items>
+                                <tableRow identifier="RunRow" id="BDg-FH-0cb" customClass="RunRowController" customModule="RunBuddy_WatchKit_Extension">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" id="W8v-FZ-03P">
+                                        <items>
+                                            <label alignment="left" text="Week 1: Monday" id="v06-lE-h4g">
+                                                <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
+                                            </label>
+                                            <group width="1" alignment="left" layout="vertical" id="Oh7-i4-ppS">
+                                                <items>
+                                                    <group width="1" alignment="left" id="Vfs-US-jLp">
+                                                        <items>
+                                                            <imageView width="22" height="1" alignment="left" image="run" contentMode="scaleAspectFit" id="lvE-Wi-6LD">
+                                                                <color key="tintColor" name="Run"/>
+                                                            </imageView>
+                                                            <label alignment="left" text="5 Minutes" textAlignment="left" id="QOJ-BI-raw"/>
+                                                        </items>
+                                                    </group>
+                                                    <group width="1" alignment="left" id="hpq-mp-Wql">
+                                                        <items>
+                                                            <imageView width="22" height="1" alignment="left" image="walk" id="3Av-1x-vlT">
+                                                                <color key="tintColor" name="Rest"/>
+                                                            </imageView>
+                                                            <label alignment="left" text="1 Minute" id="XxI-L4-kpC"/>
+                                                        </items>
+                                                    </group>
+                                                    <group width="1" alignment="left" id="MG9-Kx-X9K">
+                                                        <items>
+                                                            <imageView width="22" height="1" alignment="left" image="map.fill" catalog="system" contentMode="scaleAspectFit" id="WiD-OT-2qa">
+                                                                <color key="tintColor" name="Text"/>
+                                                            </imageView>
+                                                            <label alignment="left" text="10x" id="dFy-H0-bWs"/>
+                                                        </items>
+                                                    </group>
+                                                </items>
+                                            </group>
+                                            <group width="1" alignment="left" hidden="YES" id="f1e-Ma-O4n">
+                                                <items>
+                                                    <label alignment="left" text="Rest" textAlignment="left" id="2iu-4b-vLc">
+                                                        <color key="textColor" name="Text"/>
+                                                    </label>
+                                                </items>
+                                            </group>
+                                        </items>
+                                        <color key="backgroundColor" name="Run"/>
+                                        <edgeInsets key="margins" left="8" right="4" top="4" bottom="4"/>
+                                        <connections>
+                                            <segue destination="AgC-eL-Hgc" kind="push" id="W9D-L3-L7P"/>
+                                        </connections>
+                                    </group>
+                                    <connections>
+                                        <outlet property="nonRunDescriptionGroup" destination="f1e-Ma-O4n" id="2fb-3n-oJH"/>
+                                        <outlet property="nonRunLabel" destination="2iu-4b-vLc" id="f77-Ov-Ncg"/>
+                                        <outlet property="repeatImage" destination="WiD-OT-2qa" id="w4x-U5-a2e"/>
+                                        <outlet property="repeatLabel" destination="dFy-H0-bWs" id="r6s-Qj-o1t"/>
+                                        <outlet property="rowGroup" destination="W8v-FZ-03P" id="aFH-pH-B3b"/>
+                                        <outlet property="runDescriptionGroup" destination="Oh7-i4-ppS" id="3MX-tq-IQC"/>
+                                        <outlet property="runImage" destination="lvE-Wi-6LD" id="8Vu-43-JzK"/>
+                                        <outlet property="runTimeLabel" destination="QOJ-BI-raw" id="xsj-T1-Vze"/>
+                                        <outlet property="walkImage" destination="3Av-1x-vlT" id="tX4-Ng-2iG"/>
+                                        <outlet property="walkTimeLabel" destination="XxI-L4-kpC" id="Jff-OO-Fki"/>
+                                        <outlet property="weekDayLabel" destination="v06-lE-h4g" id="wkp-cS-COu"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="tableView" destination="JEj-EF-Ajq" id="NXH-97-kTF"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="-42" y="345"/>
+        </scene>
+        <!--Interface Controller-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller id="AgC-eL-Hgc">
+                    <items>
+                        <group width="1" alignment="left" hidden="YES" layout="vertical" id="En2-la-7pS">
+                            <items>
+                                <label alignment="left" text="Run: 5 Min" id="JAn-Pe-38j"/>
+                                <label alignment="left" text="Walk: 1 Min" id="gfM-G7-U2z"/>
+                                <label alignment="left" text="Repeat: 10x" id="25P-bh-71f"/>
+                                <button width="1" alignment="left" title="Go!" id="TkM-kQ-cfN">
+                                    <color key="titleColor" name="Text"/>
+                                    <color key="backgroundColor" name="Run"/>
+                                </button>
+                            </items>
+                        </group>
+                        <group width="1" height="1" alignment="center" layout="vertical" id="HVX-3z-z05">
+                            <items>
+                                <label alignment="left" text="WALK" textAlignment="center" id="uxP-Yq-2TE">
+                                    <fontDescription key="font" style="UICTFontTextStyleTitle1"/>
+                                </label>
+                                <timer alignment="left" textAlignment="center" id="4cl-1f-NNp">
+                                    <fontDescription key="font" style="UICTFontTextStyleTitle2"/>
+                                    <calendarUnit key="units" minute="YES" second="YES"/>
+                                </timer>
+                                <separator alignment="left" id="Qd6-T9-SJ9">
+                                    <color key="color" name="Accent"/>
+                                </separator>
+                                <button width="1" alignment="left" title="Pause" id="vQW-2U-gSR">
+                                    <color key="titleColor" name="Text"/>
+                                    <color key="backgroundColor" name="Rest"/>
+                                </button>
+                            </items>
+                        </group>
+                    </items>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="232" y="345"/>
+        </scene>
+        <!--Static Notification Interface Controller-->
+        <scene sceneID="AEw-b0-oYE">
+            <objects>
+                <notificationController id="YCC-NB-fut">
+                    <items>
+                        <label alignment="left" text="Alert Label" numberOfLines="0" id="IdU-wH-bcW"/>
+                    </items>
+                    <notificationCategory key="notificationCategory" identifier="myCategory" id="JfB-70-Muf"/>
+                    <connections>
+                        <outlet property="notificationAlertLabel" destination="IdU-wH-bcW" id="JKC-fr-R95"/>
+                        <segue destination="4sK-HA-Art" kind="relationship" relationship="dynamicNotificationInterface" id="kXh-Jw-8B1"/>
+                        <segue destination="eXb-UN-Cd0" kind="relationship" relationship="dynamicInteractiveNotificationInterface" id="mpB-YA-K8N"/>
+                    </connections>
+                </notificationController>
+            </objects>
+            <point key="canvasLocation" x="220" y="643"/>
+        </scene>
+        <!--Notification Controller-->
+        <scene sceneID="ZPc-GJ-vnh">
+            <objects>
+                <controller id="4sK-HA-Art" customClass="NotificationController" customModule="RunBuddy_WatchKit_App" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="468" y="643"/>
+        </scene>
+        <!--Notification Controller-->
+        <scene sceneID="Niz-AI-uX2">
+            <objects>
+                <controller id="eXb-UN-Cd0" customClass="NotificationController" customModule="RunBuddy_WatchKit_App" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="468" y="345"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="map.fill" catalog="system" width="64" height="56"/>
+        <image name="run" width="100" height="100"/>
+        <image name="walk" width="100" height="100"/>
+        <namedColor name="Accent">
+            <color red="0.023529411764705882" green="0.51372549019607838" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Rest">
+            <color red="0.24705882352941178" green="0.50980392156862742" blue="0.42745098039215684" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Run">
+            <color red="0.75294117647058822" green="0.19607843137254902" blue="0.12941176470588237" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Text">
+            <color red="0.96862745098039216" green="0.96862745098039216" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

@@ -1,0 +1,466 @@
+{
+	"runs": [
+		// Week 1
+		{
+			"day": "1",
+			"run": 1,
+			"walk": 2,
+			"repeatCount": 10,
+			"mileTarget": 0
+		}, 
+		{
+			"day": "2"
+		}, 
+		{
+			"day": "3",
+			"run": 1,
+			"walk": 2,
+			"repeatCount": 10,
+			"mileTarget": 0
+		},
+		{
+			"day": "6",
+			"run": 1,
+			"walk": 2,
+			"repeatCount": 0,
+			"mileTarget": 3
+		},
+
+		// Week 2
+		{
+			"day": "1",
+			"run": 1,
+			"walk": 2,
+			"repeatCount": 10,
+			"mileTarget": 0
+		}, 
+		{
+			"day": "3",
+			"run": 2,
+			"walk": 2,
+			"repeatCount": 7,
+			"mileTarget": 0
+		},
+		{
+			"day": "6",
+			"run": 1,
+			"walk": 2,
+			"repeatCount": 0,
+			"mileTarget": 3
+		},
+
+		// Week 3
+		{
+			"day": "1",
+			"run": 2,
+			"walk": 2,
+			"repeatCount": 7,
+			"mileTarget": 0
+		}, 
+		{
+			"day": "3",
+			"run": 2,
+			"walk": 2,
+			"repeatCount": 7,
+			"mileTarget": 0
+		},
+		{
+			"day": "6",
+			"run": 2,
+			"walk": 2,
+			"repeatCount": 0,
+			"mileTarget": 4
+		},
+
+		// Week 4
+		{
+			"day": "1",
+			"run": 2,
+			"walk": 2,
+			"repeatCount": 7,
+			"mileTarget": 0
+		}, 
+		{
+			"day": "3",
+			"run": 3,
+			"walk": 2,
+			"repeatCount": 6,
+			"mileTarget": 0
+		},
+		{
+			"day": "6",
+			"run": 2,
+			"walk": 2,
+			"repeatCount": 0,
+			"mileTarget": 4
+		},
+
+		// Week 5
+		{
+			"day": "1",
+			"run": 3,
+			"walk": 2,
+			"repeatCount": 6,
+			"mileTarget": 0
+		}, 
+		{
+			"day": "3",
+			"run": 3,
+			"walk": 2,
+			"repeatCount": 6,
+			"mileTarget": 0
+		},
+		{
+			"day": "6",
+			"run": 2,
+			"walk": 2,
+			"repeatCount": 0,
+			"mileTarget": 4
+		},
+
+		// Week 6
+		{
+			"day": "1",
+			"run": 3,
+			"walk": 2,
+			"repeatCount": 6,
+			"mileTarget": 0
+		}, 
+		{
+			"day": "3",
+			"run": 4,
+			"walk": 2,
+			"repeatCount": 5,
+			"mileTarget": 0
+		},
+		{
+			"day": "6",
+			"run": 3,
+			"walk": 2,
+			"repeatCount": 0,
+			"mileTarget": 5
+		},
+
+		// Week 7
+		{
+			"day": "1",
+			"run": 4,
+			"walk": 2,
+			"repeatCount": 5,
+			"mileTarget": 0
+		}, 
+		{
+			"day": "3",
+			"run": 4,
+			"walk": 2,
+			"repeatCount": 5,
+			"mileTarget": 0
+		},
+		{
+			"day": "6",
+			"run": 3,
+			"walk": 2,
+			"repeatCount": 15,
+			"notes": "Target 5 mi"
+		},
+
+		// Week 8
+		{
+			"day": "1",
+			"run": 4,
+			"walk": 2,
+			"repeatCount": 5,
+			"mileTarget": 0
+		}, 
+		{
+			"day": "3",
+			"run": 4,
+			"walk": 2,
+			"repeatCount": 5,
+			"mileTarget": 0
+		},
+		{
+			"day": "6",
+			"run": 4,
+			"walk": 2,
+			"repeatCount": 0,
+			"mileTarget": 6
+		},
+
+		// Week 9
+		{
+			"day": "1",
+			"run": 5,
+			"walk": 1,
+			"repeatCount": 6,
+			"mileTarget": 0
+		}, 
+		{
+			"day": "3",
+			"run": 4,
+			"walk": 2,
+			"repeatCount": 5,
+			"mileTarget": 0
+		},
+		{
+			"day": "6",
+			"run": 4,
+			"walk": 2,
+			"repeatCount": 0,
+			"mileTarget": 6
+		},
+
+		// Week 10
+		{
+			"day": "1",
+			"run": 5,
+			"walk": 1,
+			"repeatCount": 6,
+			"mileTarget": 0
+		}, 
+		{
+			"day": "3",
+			"run": 5,
+			"walk": 1,
+			"repeatCount": 6,
+			"mileTarget": 0
+		},
+		{
+			"day": "6",
+			"run": 4,
+			"walk": 1,
+			"repeatCount": 0,
+			"mileTarget": 4
+		},
+
+		// Week 11
+		{
+			"day": "1",
+			"run": 5,
+			"walk": 1,
+			"repeatCount": 6,
+			"mileTarget": 0
+		}, 
+		{
+			"day": "3",
+			"run": 5,
+			"walk": 1,
+			"repeatCount": 6,
+			"mileTarget": 0
+		},
+		{
+			"day": "6",
+			"run": 4,
+			"walk": 1,
+			"repeatCount": 0,
+			"mileTarget": 7
+		},
+
+		// Week 12
+		{
+			"day": "1",
+			"run": 5,
+			"walk": 1,
+			"repeatCount": 6,
+			"mileTarget": 0
+		}, 
+		{
+			"day": "3",
+			"run": 6,
+			"walk": 1,
+			"repeatCount": 5,
+			"mileTarget": 0
+		},
+		{
+			"day": "6",
+			"run": 4,
+			"walk": 1,
+			"repeatCount": 0,
+			"mileTarget": 8
+		},
+
+		// Week 13
+		{
+			"day": "1",
+			"run": 6,
+			"walk": 1,
+			"repeatCount": 5,
+			"mileTarget": 0
+		}, 
+		{
+			"day": "3",
+			"run": 6,
+			"walk": 1,
+			"repeatCount": 5,
+			"mileTarget": 0
+		},
+		{
+			"day": "6",
+			"run": 5,
+			"walk": 1,
+			"repeatCount": 0,
+			"mileTarget": 5
+		},
+
+		// Week 14
+		{
+			"day": "1",
+			"run": 6,
+			"walk": 1,
+			"repeatCount": 5,
+			"mileTarget": 0
+		}, 
+		{
+			"day": "3",
+			"run": 7,
+			"walk": 1,
+			"repeatCount": 5,
+			"mileTarget": 0
+		},
+		{
+			"day": "6",
+			"run": 5,
+			"walk": 1,
+			"repeatCount": 0,
+			"mileTarget": 9
+		},
+
+		// Week 15
+		{
+			"day": "1",
+			"run": 7,
+			"walk": 1,
+			"repeatCount": 5,
+			"mileTarget": 0
+		}, 
+		{
+			"day": "3",
+			"run": 7,
+			"walk": 1,
+			"repeatCount": 5,
+			"mileTarget": 0
+		},
+		{
+			"day": "6",
+			"run": 6,
+			"walk": 1,
+			"repeatCount": 0,
+			"mileTarget": 6
+		},
+
+		// Week 16
+		{
+			"day": "1",
+			"run": 7,
+			"walk": 1,
+			"repeatCount": 5,
+			"mileTarget": 0
+		}, 
+		{
+			"day": "3",
+			"run": 8,
+			"walk": 1,
+			"repeatCount": 4,
+			"mileTarget": 0
+		},
+		{
+			"day": "6",
+			"run": 6,
+			"walk": 1,
+			"repeatCount": 0,
+			"mileTarget": 10
+		},
+
+		// Week 17
+		{
+			"day": "1",
+			"run": 8,
+			"walk": 1,
+			"repeatCount": 5,
+			"mileTarget": 0
+		}, 
+		{
+			"day": "3",
+			"run": 8,
+			"walk": 1,
+			"repeatCount": 5,
+			"mileTarget": 0
+		},
+		{
+			"day": "6",
+			"run": 7,
+			"walk": 1,
+			"repeatCount": 0,
+			"mileTarget": 7
+		},
+
+		// Week 18
+		{
+			"day": "1",
+			"run": 8,
+			"walk": 1,
+			"repeatCount": 5,
+			"mileTarget": 0
+		}, 
+		{
+			"day": "3",
+			"run": 10,
+			"walk": 1,
+			"repeatCount": 4,
+			"mileTarget": 0
+		},
+		{
+			"day": "6",
+			"run": 7,
+			"walk": 1,
+			"repeatCount": 0,
+			"mileTarget": 10
+		},
+
+		// Week 19
+		{
+			"day": "1",
+			"run": 10,
+			"walk": 1,
+			"repeatCount": 4,
+			"mileTarget": 0
+		}, 
+		{
+			"day": "3",
+			"run": 10,
+			"walk": 1,
+			"repeatCount": 4,
+			"mileTarget": 0
+		},
+		{
+			"day": "6",
+			"run": 8,
+			"walk": 1,
+			"repeatCount": 0,
+			"mileTarget": 6
+		},
+
+		// Week 20
+		{
+			"day": "1",
+			"run": 10,
+			"walk": 1,
+			"repeatCount": 4,
+			"mileTarget": 0
+		}, 
+		{
+			"day": "3",
+			"run": 10,
+			"walk": 1,
+			"repeatCount": 4,
+			"mileTarget": 0
+		},
+		{
+			"day": "6",
+			"run": 8,
+			"walk": 1,
+			"repeatCount": 0,
+			"mileTarget": 13
+		},
+	]
+}
