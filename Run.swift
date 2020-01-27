@@ -8,6 +8,18 @@
 
 import UIKit
 
+enum RunMode {
+    case interval
+    case distance
+}
+
+enum RunPhase {
+    case warmup
+    case run
+    case walk
+    case done
+}
+
 struct Run {
     let week: Int
     let day: Int
@@ -32,6 +44,10 @@ struct Run {
             return "XT"
         }
         return "Rest"
+    }
+    
+    var mode: RunMode {
+        return (repeatCount > 0) ? .interval : .distance
     }
     
     func toJSON() -> String {

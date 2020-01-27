@@ -1,0 +1,13 @@
+{
+    "runs": 
+    [
+        {
+            "week": 1,
+            "day": 1,
+            "run": 1,
+            "walk": 1,
+            "repeatCount": 2,
+            "mileTarget": 0
+        }
+    ]
+}

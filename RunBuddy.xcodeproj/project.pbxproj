@@ -31,6 +31,9 @@
 		83A741C823DD507F0024F6C8 /* UIColor+Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A741C623DD507F0024F6C8 /* UIColor+Asset.swift */; };
 		83A741CB23DD6A1D0024F6C8 /* RunRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A741C923DD6A1D0024F6C8 /* RunRowController.swift */; };
 		83A741CD23DE11940024F6C8 /* RunInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A741CC23DE11940024F6C8 /* RunInterfaceController.swift */; };
+		83A741CF23DE72020024F6C8 /* run_debug.json in Resources */ = {isa = PBXBuildFile; fileRef = 83A741CE23DE72020024F6C8 /* run_debug.json */; };
+		83A741D023DE72020024F6C8 /* run_debug.json in Resources */ = {isa = PBXBuildFile; fileRef = 83A741CE23DE72020024F6C8 /* run_debug.json */; };
+		83A741D123DE720F0024F6C8 /* run_debug.json in Resources */ = {isa = PBXBuildFile; fileRef = 83A741CE23DE72020024F6C8 /* run_debug.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +104,7 @@
 		83A741C623DD507F0024F6C8 /* UIColor+Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Asset.swift"; sourceTree = "<group>"; };
 		83A741C923DD6A1D0024F6C8 /* RunRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunRowController.swift; sourceTree = "<group>"; };
 		83A741CC23DE11940024F6C8 /* RunInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunInterfaceController.swift; sourceTree = "<group>"; };
+		83A741CE23DE72020024F6C8 /* run_debug.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = run_debug.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +132,7 @@
 				83A7419623DD20870024F6C8 /* RunBuddy WatchKit App */,
 				83A741A523DD20870024F6C8 /* RunBuddy WatchKit Extension */,
 				83A741BF23DD2E250024F6C8 /* run.json */,
+				83A741CE23DE72020024F6C8 /* run_debug.json */,
 				83A741C323DD2E480024F6C8 /* Run.swift */,
 				83A7417F23DD20830024F6C8 /* Products */,
 			);
@@ -286,6 +291,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83A741CF23DE72020024F6C8 /* run_debug.json in Resources */,
 				83A7418E23DD20860024F6C8 /* LaunchScreen.storyboard in Resources */,
 				83A741C023DD2E250024F6C8 /* run.json in Resources */,
 				83A7418B23DD20860024F6C8 /* Assets.xcassets in Resources */,
@@ -298,6 +304,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83A7419B23DD20870024F6C8 /* Assets.xcassets in Resources */,
+				83A741D123DE720F0024F6C8 /* run_debug.json in Resources */,
 				83A7419923DD20870024F6C8 /* Interface.storyboard in Resources */,
 				83A741C123DD2E250024F6C8 /* run.json in Resources */,
 			);
@@ -307,6 +314,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83A741D023DE72020024F6C8 /* run_debug.json in Resources */,
 				83A741AF23DD20880024F6C8 /* Assets.xcassets in Resources */,
 				83A741C223DD2E250024F6C8 /* run.json in Resources */,
 			);
