@@ -9,6 +9,8 @@
 import WatchKit
 import Foundation
 import AVFoundation
+import CoreLocation
+import HealthKit
 
 class RunInterfaceController: WKInterfaceController {
     @IBOutlet weak var idleGroup: WKInterfaceGroup!
@@ -23,16 +25,23 @@ class RunInterfaceController: WKInterfaceController {
     
     @IBOutlet weak var pauseButton: WKInterfaceButton!
     
+    var activeRun: Run!
+    var healthStore: HKHealthStore!
+    var configuration: HKWorkoutConfiguration!
+    var session: HKWorkoutSession!
+    var builder: HKLiveWorkoutBuilder!
+    
     var runIsActive: Bool = false
     var isPaused: Bool = false
     var runStartTime: Date = Date()
     var elapsedTime: TimeInterval = 0
     var duration: TimeInterval = 0
-    var activeRun: Run?
     var timer: Timer = Timer()
+    var timer5s: Timer = Timer()
+    
     var currentRunPhase: RunPhase = .warmup
     var currentInterval = 0
-    
+
     let synth = AVSpeechSynthesizer()
     let beginRunUtterance = AVSpeechUtterance(string: "Begin warmup")
     let pausingWorkoutUtterance = AVSpeechUtterance(string: "Pausing workout")
@@ -42,15 +51,42 @@ class RunInterfaceController: WKInterfaceController {
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+            print(error.localizedDescription)
+        }
+        
         synth.delegate = self
         
-        activeRun = context as? Run
-        if let run = activeRun {
-            if runIsActive {
-                configureViewForActiveRun(run: run)
-            } else {
-                configureViewForPreRun(run: run)
+        if let sessionContext = context as? WorkoutSessionContext {
+            healthStore = sessionContext.healthStore
+            configuration = sessionContext.configuration
+            
+            do {
+                session = try HKWorkoutSession(healthStore: healthStore, configuration: configuration)
+                builder = session.associatedWorkoutBuilder()
+            } catch {
+                dismiss()
+                return
             }
+            
+            session.delegate = self
+            builder.delegate = self
+            
+            builder.dataSource = HKLiveWorkoutDataSource(healthStore: healthStore,
+                                                         workoutConfiguration: configuration)
+            
+            activeRun = sessionContext.run
+            if let run = activeRun {
+                if runIsActive {
+                    configureViewForActiveRun(run: run)
+                } else {
+                    configureViewForPreRun(run: run)
+                }
+            }
+            
         }
     }
     
@@ -58,9 +94,8 @@ class RunInterfaceController: WKInterfaceController {
         idleGroup.setHidden(false)
         activeGroup.setHidden(true)
         
-        runLabel.setText("\(run.run) Minutes")
-        let walkSuffix = run.walk > 1 ? "s" : ""
-        walkLabel.setText("\(run.walk) Minute\(walkSuffix)")
+        runLabel.setText("\(run.runTitle)")
+        walkLabel.setText("\(run.walkTitle)")
         if run.repeatCount > 0 {
             repeatImage.setImage(UIImage(systemName: "stopwatch.fill"))
             repeatLabel.setText("\(run.repeatCount)x")
@@ -93,7 +128,14 @@ class RunInterfaceController: WKInterfaceController {
             return
         }
         
-        startTimer(duration: 5)
+        session.startActivity(with: Date())
+        builder.beginCollection(withStart: Date()) { (success, error) in
+            if let err = error {
+                print(err.localizedDescription)
+            }
+        }
+        
+        startTimer(duration: 300)
         
         currentRunPhase = .warmup
         titleLabel.setText("Warmup")
@@ -112,17 +154,21 @@ class RunInterfaceController: WKInterfaceController {
         isPaused = false
         let timeDelta = duration - elapsedTime
         timer = Timer.scheduledTimer(timeInterval: timeDelta, target: self, selector: #selector(timerDone), userInfo: nil, repeats: false)
+        if timeDelta > 5 {
+            timer5s = Timer.scheduledTimer(timeInterval: timeDelta, target: self, selector: #selector(warningTime), userInfo: nil, repeats: false)
+        }
         timeLabel.setDate(Date(timeIntervalSinceNow: timeDelta))
         timeLabel.start()
         pauseButton.setTitle("Pause")
-        // at 5s left WKInterfaceDevice.current().play(.notification)
     }
     
     @IBAction func pauseButtonPressed() {
         if isPaused {
+            session.resume()
             startTimer(duration: duration)
             synth.speak(resumingWorkoutUtterance)
         } else {
+            session.pause()
             isPaused = true
             synth.speak(pausingWorkoutUtterance)
             let paused = Date()
@@ -133,6 +179,7 @@ class RunInterfaceController: WKInterfaceController {
             
             //stop the ticking of the internal timer
             timer.invalidate()
+            timer5s.invalidate()
             
             //do whatever UI changes you need to
             pauseButton.setTitle("Resume")
@@ -141,9 +188,11 @@ class RunInterfaceController: WKInterfaceController {
     
     @IBAction func cancelButtonPressed() {
         runIsActive = false
-        if let run = activeRun {
-            configureViewForPreRun(run: run)
-        }
+        endRun()
+    }
+    
+    @objc func warningTime() {
+        WKInterfaceDevice.current().play(.notification)
     }
     
     @objc func timerDone() {
@@ -151,15 +200,16 @@ class RunInterfaceController: WKInterfaceController {
         case .warmup:
             currentRunPhase = .run
             titleLabel.setText("Run")
-            let runUtterance = AVSpeechUtterance(string: "Run for \(activeRun!.run) Minutes")
+            let runUtterance = AVSpeechUtterance(string: "Run for \(activeRun!.runTitle)")
             synth.speak(runUtterance)
+            elapsedTime = 0
             startTimer(duration: TimeInterval(activeRun!.run * 60))
         case .run:
             currentRunPhase = .walk
             titleLabel.setText("Walk")
-            let walkSuffix = activeRun!.walk > 1 ? "s" : ""
-            let walkUtterance = AVSpeechUtterance(string: "Walk for \(activeRun!.run) Minute\(walkSuffix)")
+            let walkUtterance = AVSpeechUtterance(string: "Walk for \(activeRun!.walkTitle)")
             synth.speak(walkUtterance)
+            elapsedTime = 0
             startTimer(duration: TimeInterval(activeRun!.walk * 60))
         case .walk:
             currentInterval = currentInterval + 1
@@ -168,8 +218,9 @@ class RunInterfaceController: WKInterfaceController {
             } else {
                 currentRunPhase = .run
                 titleLabel.setText("Run")
-                let runUtterance = AVSpeechUtterance(string: "Run for \(activeRun!.run) Minutes")
+                let runUtterance = AVSpeechUtterance(string: "Run for \(activeRun!.runTitle)")
                 synth.speak(runUtterance)
+                elapsedTime = 0
                 startTimer(duration: TimeInterval(activeRun!.run * 60))
             }
         case .done:
@@ -183,11 +234,52 @@ class RunInterfaceController: WKInterfaceController {
         titleLabel.setText("Done")
         timeLabel.stop()
         timer.invalidate()
+        timer5s.invalidate()
         synth.speak(workoutCompleteUtterance)
+        session.end()
         popToRootController()
     }
 }
 
 extension RunInterfaceController: AVSpeechSynthesizerDelegate {
     
+}
+
+extension RunInterfaceController: HKWorkoutSessionDelegate {
+    func workoutSession(_ workoutSession: HKWorkoutSession, didChangeTo toState: HKWorkoutSessionState, from fromState: HKWorkoutSessionState, date: Date) {
+        
+    }
+    
+    func workoutSession(_ workoutSession: HKWorkoutSession, didFailWithError error: Error) {
+        print(error.localizedDescription)
+    }
+}
+
+extension RunInterfaceController: HKLiveWorkoutBuilderDelegate {
+    func workoutBuilderDidCollectEvent(_ workoutBuilder: HKLiveWorkoutBuilder) {
+        
+    }
+    
+    func workoutBuilder(_ workoutBuilder: HKLiveWorkoutBuilder, didCollectDataOf collectedTypes: Set<HKSampleType>) {
+        for type in collectedTypes {
+            guard let quantityType = type as? HKQuantityType else {
+                return // Nothing to do.
+            }
+            
+            /// - Tag: GetStatistics
+            let statistics = workoutBuilder.statistics(for: quantityType)
+            switch quantityType {
+            case HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning):
+                let meterUnit = HKUnit.meter()
+                let value = statistics?.sumQuantity()?.doubleValue(for: meterUnit)
+                let roundedValue = Double( round( 1 * value! ) / 1 )
+                let miles = roundedValue * 0.000621371
+                if activeRun.mode == .distance && Double(activeRun.mileTarget) >= miles {
+                    endRun()
+                }
+            default:
+                break
+            }
+        }
+    }
 }

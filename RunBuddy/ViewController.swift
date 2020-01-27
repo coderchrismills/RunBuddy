@@ -70,8 +70,7 @@ class PlanDescriptionView: UIView {
         
         let runTime = run.run
         if runTime > 0 {
-            let minuteSuffix = runTime > 1 ? "s" : ""
-            runDescription.text = "Run: \(runTime) Minute\(minuteSuffix)"
+            runDescription.text = "Run: \(run.runTitle)"
         } else {
             runDescription.text = ""
         }
@@ -79,8 +78,7 @@ class PlanDescriptionView: UIView {
         
         let walkTime = run.walk
         if walkTime > 0 {
-            let walkSufffix = walkTime > 1 ? "s" : ""
-            walkDescription.text = "Walk: \(walkTime) Minute\(walkSufffix)"
+            walkDescription.text = "Walk: \(run.walkTitle)"
         } else {
             walkDescription.text = run.title
         }

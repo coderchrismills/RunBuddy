@@ -38,9 +38,8 @@ class RunRowController: NSObject {
             } else {
                 runDescriptionGroup.setHidden(false)
                 nonRunDescriptionGroup.setHidden(true)
-                runTimeLabel.setText("\(run.run) Minutes")
-                let walkSuffix = run.walk > 1 ? "s" : ""
-                walkTimeLabel.setText("\(run.walk) Minute\(walkSuffix)")
+                runTimeLabel.setText("\(run.runTitle)")
+                walkTimeLabel.setText("\(run.walkTitle)")
                 if run.repeatCount > 0 {
                     repeatImage.setImage(UIImage(systemName: "stopwatch.fill"))
                     repeatLabel.setText("\(run.repeatCount)x")

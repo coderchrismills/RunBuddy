@@ -8,11 +8,13 @@
 
 import WatchKit
 import Foundation
+import HealthKit
 
 class InterfaceController: WKInterfaceController {
     @IBOutlet weak var tableView: WKInterfaceTable!
     
     var runs: [Run] = []
+    let healthStore = HKHealthStore()
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
@@ -25,6 +27,12 @@ class InterfaceController: WKInterfaceController {
             guard let controller = tableView.rowController(at: index) as? RunRowController else { continue }
             controller.run = runs[index]
         }
+        
+        let typesToShare: Set = [ HKQuantityType.workoutType() ]
+        let typesToRead: Set = [ HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning)! ]
+        healthStore.requestAuthorization(toShare: typesToShare, read: typesToRead, completion: { (success, error) in
+            
+        })
     }
     
     override func willActivate() {
@@ -42,6 +50,12 @@ class InterfaceController: WKInterfaceController {
         if run.mileTarget == 0 && run.repeatCount == 0 {
             return
         }
-        pushController(withName: "Run", context: run)
+        
+        let configuration = HKWorkoutConfiguration()
+        configuration.activityType = .running
+        configuration.locationType = .outdoor
+        let sessionContext = WorkoutSessionContext(healthStore: healthStore, configuration: configuration, run: run)
+        
+        pushController(withName: "Run", context: sessionContext)
     }
 }

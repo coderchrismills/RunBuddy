@@ -50,6 +50,16 @@ struct Run {
         return (repeatCount > 0) ? .interval : .distance
     }
     
+    var runTitle: String {
+        let runSuffix = run > 1 ? "s" : ""
+        return "\(run) Minute\(runSuffix)"
+    }
+    
+    var walkTitle: String {
+        let walkSuffix = walk > 1 ? "s" : ""
+        return "\(walk) Minute\(walkSuffix)"
+    }
+    
     func toJSON() -> String {
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: self, options: .withoutEscapingSlashes)

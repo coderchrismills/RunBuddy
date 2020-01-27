@@ -50,6 +50,13 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     
     func getLocalizableSampleTemplate(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTemplate?) -> Void) {
         // This method will be called once per supported complication, and the results will be cached
+        if complication.family == .modularSmall {
+            let template = CLKComplicationTemplateModularSmallSimpleImage()
+            let imageProvider = CLKImageProvider(onePieceImage: UIImage(named: "run")!)
+            template.imageProvider = imageProvider
+            handler(template)
+            return 
+        }
         handler(nil)
     }
     

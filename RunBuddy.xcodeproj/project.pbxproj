@@ -34,6 +34,9 @@
 		83A741CF23DE72020024F6C8 /* run_debug.json in Resources */ = {isa = PBXBuildFile; fileRef = 83A741CE23DE72020024F6C8 /* run_debug.json */; };
 		83A741D023DE72020024F6C8 /* run_debug.json in Resources */ = {isa = PBXBuildFile; fileRef = 83A741CE23DE72020024F6C8 /* run_debug.json */; };
 		83A741D123DE720F0024F6C8 /* run_debug.json in Resources */ = {isa = PBXBuildFile; fileRef = 83A741CE23DE72020024F6C8 /* run_debug.json */; };
+		83A741D423DE8D2F0024F6C8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A741D323DE8D2F0024F6C8 /* MapKit.framework */; };
+		83A741D723DE995C0024F6C8 /* WorkoutSessionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A741D523DE98CB0024F6C8 /* WorkoutSessionContext.swift */; };
+		83A741DA23DEA0110024F6C8 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A741D923DEA0110024F6C8 /* HealthKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +108,10 @@
 		83A741C923DD6A1D0024F6C8 /* RunRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunRowController.swift; sourceTree = "<group>"; };
 		83A741CC23DE11940024F6C8 /* RunInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunInterfaceController.swift; sourceTree = "<group>"; };
 		83A741CE23DE72020024F6C8 /* run_debug.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = run_debug.json; sourceTree = "<group>"; };
+		83A741D323DE8D2F0024F6C8 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS6.1.sdk/System/Library/Frameworks/MapKit.framework; sourceTree = DEVELOPER_DIR; };
+		83A741D523DE98CB0024F6C8 /* WorkoutSessionContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSessionContext.swift; sourceTree = "<group>"; };
+		83A741D823DEA0110024F6C8 /* RunBuddy WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "RunBuddy WatchKit Extension.entitlements"; sourceTree = "<group>"; };
+		83A741D923DEA0110024F6C8 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS6.1.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +126,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83A741D423DE8D2F0024F6C8 /* MapKit.framework in Frameworks */,
+				83A741DA23DEA0110024F6C8 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,6 +144,7 @@
 				83A741CE23DE72020024F6C8 /* run_debug.json */,
 				83A741C323DD2E480024F6C8 /* Run.swift */,
 				83A7417F23DD20830024F6C8 /* Products */,
+				83A741D223DE8D2F0024F6C8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -176,9 +186,11 @@
 		83A741A523DD20870024F6C8 /* RunBuddy WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
+				83A741D823DEA0110024F6C8 /* RunBuddy WatchKit Extension.entitlements */,
 				83A741A623DD20870024F6C8 /* InterfaceController.swift */,
 				83A741C923DD6A1D0024F6C8 /* RunRowController.swift */,
 				83A741CC23DE11940024F6C8 /* RunInterfaceController.swift */,
+				83A741D523DE98CB0024F6C8 /* WorkoutSessionContext.swift */,
 				83A741A823DD20870024F6C8 /* ExtensionDelegate.swift */,
 				83A741AA23DD20870024F6C8 /* NotificationController.swift */,
 				83A741AC23DD20870024F6C8 /* ComplicationController.swift */,
@@ -187,6 +199,15 @@
 				83A741B123DD20880024F6C8 /* PushNotificationPayload.apns */,
 			);
 			path = "RunBuddy WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		83A741D223DE8D2F0024F6C8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				83A741D923DEA0110024F6C8 /* HealthKit.framework */,
+				83A741D323DE8D2F0024F6C8 /* MapKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -339,6 +360,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83A741D723DE995C0024F6C8 /* WorkoutSessionContext.swift in Sources */,
 				83A741AB23DD20870024F6C8 /* NotificationController.swift in Sources */,
 				83A741CD23DE11940024F6C8 /* RunInterfaceController.swift in Sources */,
 				83A741AD23DD20870024F6C8 /* ComplicationController.swift in Sources */,
@@ -511,6 +533,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "RunBuddy WatchKit Extension/RunBuddy WatchKit Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K2DYHV494C;
 				INFOPLIST_FILE = "RunBuddy WatchKit Extension/Info.plist";
@@ -533,6 +556,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "RunBuddy WatchKit Extension/RunBuddy WatchKit Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K2DYHV494C;
 				INFOPLIST_FILE = "RunBuddy WatchKit Extension/Info.plist";
@@ -603,7 +627,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.lazygardener.RunBuddy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -621,7 +645,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.lazygardener.RunBuddy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
