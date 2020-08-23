@@ -34,7 +34,6 @@ class RunInterfaceController: WKInterfaceController {
     var runIsActive: Bool = false
     var isPaused: Bool = false
     var runStartTime: Date = Date()
-    var elapsedTime: TimeInterval = 0
     var duration: TimeInterval = 0
     var timer: Timer = Timer()
     var timer5s: Timer = Timer()
@@ -135,7 +134,7 @@ class RunInterfaceController: WKInterfaceController {
             }
         }
         
-        startTimer(duration: 300)
+        startWorkout(duration: 300)
         
         currentRunPhase = .warmup
         titleLabel.setText("Warmup")
@@ -148,41 +147,62 @@ class RunInterfaceController: WKInterfaceController {
         synth.speak(beginRunUtterance)
     }
     
-    func startTimer(duration: TimeInterval) {
+    func startWorkout(duration: TimeInterval) {
         self.duration = duration
-        runStartTime = Date()
+        self.runStartTime = Date()
+        self.isPaused = false
+        
+        startTimer(duration: duration)
+    }
+    
+    func pauseWorkout() {
+        session.pause()
+        isPaused = true
+        
+        synth.speak(pausingWorkoutUtterance)
+        
+        duration = duration - Date().timeIntervalSince(runStartTime)
+        
+        //stop watchkit timer on the screen
+        timeLabel.stop()
+        
+        //stop the ticking of the internal timer
+        timer.invalidate()
+        timer5s.invalidate()
+        
+        //do whatever UI changes you need to
+        pauseButton.setTitle("Resume")
+    }
+    
+    func resumeWorkout() {
+        session.resume()
         isPaused = false
-        let timeDelta = duration - elapsedTime
-        timer = Timer.scheduledTimer(timeInterval: timeDelta, target: self, selector: #selector(timerDone), userInfo: nil, repeats: false)
-        if timeDelta > 5 {
-            timer5s = Timer.scheduledTimer(timeInterval: timeDelta, target: self, selector: #selector(warningTime), userInfo: nil, repeats: false)
+        self.runStartTime = Date()
+        
+        startTimer(duration: duration)
+        synth.speak(resumingWorkoutUtterance)
+    }
+    
+    func startTimer(duration: TimeInterval) {
+        self.timer.invalidate()
+        self.timer5s.invalidate()
+    
+        timer = Timer.scheduledTimer(timeInterval: duration, target: self, selector: #selector(timerDone), userInfo: nil, repeats: false)
+        if duration > 5 {
+            timer5s = Timer.scheduledTimer(timeInterval: duration, target: self, selector: #selector(warningTime), userInfo: nil, repeats: false)
         }
-        timeLabel.setDate(Date(timeIntervalSinceNow: timeDelta))
+        
+        timeLabel.setDate(Date(timeIntervalSinceNow: duration))
         timeLabel.start()
+        
         pauseButton.setTitle("Pause")
     }
     
     @IBAction func pauseButtonPressed() {
         if isPaused {
-            session.resume()
-            startTimer(duration: duration)
-            synth.speak(resumingWorkoutUtterance)
+            resumeWorkout()
         } else {
-            session.pause()
-            isPaused = true
-            synth.speak(pausingWorkoutUtterance)
-            let paused = Date()
-            elapsedTime += paused.timeIntervalSince(runStartTime)
-            
-            //stop watchkit timer on the screen
-            timeLabel.stop()
-            
-            //stop the ticking of the internal timer
-            timer.invalidate()
-            timer5s.invalidate()
-            
-            //do whatever UI changes you need to
-            pauseButton.setTitle("Resume")
+            pauseWorkout()
         }
     }
     
@@ -202,14 +222,12 @@ class RunInterfaceController: WKInterfaceController {
             titleLabel.setText("Run")
             let runUtterance = AVSpeechUtterance(string: "Run for \(activeRun!.runTitle)")
             synth.speak(runUtterance)
-            elapsedTime = 0
-            startTimer(duration: TimeInterval(activeRun!.run * 60))
+            startWorkout(duration: TimeInterval(activeRun!.run * 60))
         case .run:
             currentRunPhase = .walk
             titleLabel.setText("Walk")
             let walkUtterance = AVSpeechUtterance(string: "Walk for \(activeRun!.walkTitle)")
             synth.speak(walkUtterance)
-            elapsedTime = 0
             startTimer(duration: TimeInterval(activeRun!.walk * 60))
         case .walk:
             currentInterval = currentInterval + 1
@@ -220,8 +238,7 @@ class RunInterfaceController: WKInterfaceController {
                 titleLabel.setText("Run")
                 let runUtterance = AVSpeechUtterance(string: "Run for \(activeRun!.runTitle)")
                 synth.speak(runUtterance)
-                elapsedTime = 0
-                startTimer(duration: TimeInterval(activeRun!.run * 60))
+                startWorkout(duration: TimeInterval(activeRun!.run * 60))
             }
         case .done:
             currentRunPhase = .done
