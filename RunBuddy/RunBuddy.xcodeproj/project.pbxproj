@@ -25,10 +25,16 @@
 		B2861478257F3BEE0085F26F /* run.json in Resources */ = {isa = PBXBuildFile; fileRef = B2861474257F3BEE0085F26F /* run.json */; };
 		B2861479257F3BEE0085F26F /* Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2861475257F3BEE0085F26F /* Run.swift */; };
 		B286147A257F3BEE0085F26F /* Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2861475257F3BEE0085F26F /* Run.swift */; };
-		B286147B257F3BEE0085F26F /* run_debug.json in Resources */ = {isa = PBXBuildFile; fileRef = B2861476257F3BEE0085F26F /* run_debug.json */; };
-		B286147C257F3BEE0085F26F /* run_debug.json in Resources */ = {isa = PBXBuildFile; fileRef = B2861476257F3BEE0085F26F /* run_debug.json */; };
 		B2861481257F3D350085F26F /* UIColor+Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2861480257F3D350085F26F /* UIColor+Asset.swift */; };
 		B2861482257F3D350085F26F /* UIColor+Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2861480257F3D350085F26F /* UIColor+Asset.swift */; };
+		B29F1E262591682000EE42D5 /* RunData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29F1E252591682000EE42D5 /* RunData.swift */; };
+		B29F1E272591682000EE42D5 /* RunData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29F1E252591682000EE42D5 /* RunData.swift */; };
+		B29F1E2C25917D5500EE42D5 /* RunCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29F1E2B25917D5500EE42D5 /* RunCard.swift */; };
+		B29F1E2D25917D5500EE42D5 /* RunCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29F1E2B25917D5500EE42D5 /* RunCard.swift */; };
+		B29F1E382591844A00EE42D5 /* Color+Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29F1E372591844A00EE42D5 /* Color+Asset.swift */; };
+		B29F1E392591844A00EE42D5 /* Color+Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29F1E372591844A00EE42D5 /* Color+Asset.swift */; };
+		B29F1E3E25918AE700EE42D5 /* RunTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29F1E3D25918AE700EE42D5 /* RunTile.swift */; };
+		B29F1E3F25918AE700EE42D5 /* RunTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29F1E3D25918AE700EE42D5 /* RunTile.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,8 +101,11 @@
 		B286145F257F3B670085F26F /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		B2861474257F3BEE0085F26F /* run.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = run.json; path = Shared/run.json; sourceTree = SOURCE_ROOT; };
 		B2861475257F3BEE0085F26F /* Run.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Run.swift; path = Shared/Run.swift; sourceTree = SOURCE_ROOT; };
-		B2861476257F3BEE0085F26F /* run_debug.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = run_debug.json; path = Shared/run_debug.json; sourceTree = SOURCE_ROOT; };
 		B2861480257F3D350085F26F /* UIColor+Asset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Asset.swift"; sourceTree = "<group>"; };
+		B29F1E252591682000EE42D5 /* RunData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunData.swift; sourceTree = "<group>"; };
+		B29F1E2B25917D5500EE42D5 /* RunCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunCard.swift; sourceTree = "<group>"; };
+		B29F1E372591844A00EE42D5 /* Color+Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Asset.swift"; sourceTree = "<group>"; };
+		B29F1E3D25918AE700EE42D5 /* RunTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunTile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +152,8 @@
 			children = (
 				B2861432257F3B650085F26F /* RunBuddyApp.swift */,
 				B2861434257F3B650085F26F /* ContentView.swift */,
+				B29F1E2B25917D5500EE42D5 /* RunCard.swift */,
+				B29F1E3D25918AE700EE42D5 /* RunTile.swift */,
 				B2861436257F3B650085F26F /* Assets.xcassets */,
 				B286143B257F3B650085F26F /* Info.plist */,
 				B2861438257F3B650085F26F /* Preview Content */,
@@ -194,10 +205,11 @@
 		B2861473257F3BB40085F26F /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				B2861476257F3BEE0085F26F /* run_debug.json */,
 				B2861474257F3BEE0085F26F /* run.json */,
 				B2861475257F3BEE0085F26F /* Run.swift */,
+				B29F1E252591682000EE42D5 /* RunData.swift */,
 				B2861480257F3D350085F26F /* UIColor+Asset.swift */,
+				B29F1E372591844A00EE42D5 /* Color+Asset.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -304,7 +316,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B286143A257F3B650085F26F /* Preview Assets.xcassets in Resources */,
-				B286147B257F3BEE0085F26F /* run_debug.json in Resources */,
 				B2861437257F3B650085F26F /* Assets.xcassets in Resources */,
 				B2861477257F3BEE0085F26F /* run.json in Resources */,
 			);
@@ -323,7 +334,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B286145D257F3B670085F26F /* Preview Assets.xcassets in Resources */,
-				B286147C257F3BEE0085F26F /* run_debug.json in Resources */,
 				B286145A257F3B670085F26F /* Assets.xcassets in Resources */,
 				B2861478257F3BEE0085F26F /* run.json in Resources */,
 			);
@@ -337,7 +347,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2861435257F3B650085F26F /* ContentView.swift in Sources */,
+				B29F1E382591844A00EE42D5 /* Color+Asset.swift in Sources */,
+				B29F1E2C25917D5500EE42D5 /* RunCard.swift in Sources */,
+				B29F1E3E25918AE700EE42D5 /* RunTile.swift in Sources */,
 				B2861479257F3BEE0085F26F /* Run.swift in Sources */,
+				B29F1E262591682000EE42D5 /* RunData.swift in Sources */,
 				B2861481257F3D350085F26F /* UIColor+Asset.swift in Sources */,
 				B2861433257F3B650085F26F /* RunBuddyApp.swift in Sources */,
 			);
@@ -351,9 +365,13 @@
 				B286147A257F3BEE0085F26F /* Run.swift in Sources */,
 				B2861452257F3B660085F26F /* ContentView.swift in Sources */,
 				B2861458257F3B660085F26F /* ComplicationController.swift in Sources */,
+				B29F1E392591844A00EE42D5 /* Color+Asset.swift in Sources */,
+				B29F1E2D25917D5500EE42D5 /* RunCard.swift in Sources */,
 				B2861482257F3D350085F26F /* UIColor+Asset.swift in Sources */,
+				B29F1E3F25918AE700EE42D5 /* RunTile.swift in Sources */,
 				B2861450257F3B660085F26F /* RunBuddyApp.swift in Sources */,
 				B2861456257F3B660085F26F /* NotificationView.swift in Sources */,
+				B29F1E272591682000EE42D5 /* RunData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
