@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B23A99E725FC5CAC00795588 /* RunSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23A99E525FC5CAC00795588 /* RunSession.swift */; };
 		B2861433257F3B650085F26F /* RunBuddyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2861432257F3B650085F26F /* RunBuddyApp.swift */; };
 		B2861435257F3B650085F26F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2861434257F3B650085F26F /* ContentView.swift */; };
 		B2861437257F3B650085F26F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2861436257F3B650085F26F /* Assets.xcassets */; };
@@ -35,6 +36,7 @@
 		B29F1E392591844A00EE42D5 /* Color+Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29F1E372591844A00EE42D5 /* Color+Asset.swift */; };
 		B29F1E3E25918AE700EE42D5 /* RunTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29F1E3D25918AE700EE42D5 /* RunTile.swift */; };
 		B29F1E3F25918AE700EE42D5 /* RunTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29F1E3D25918AE700EE42D5 /* RunTile.swift */; };
+		B2E0C07F25981BD5007C7971 /* Health.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E0C07D25981BD5007C7971 /* Health.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +82,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B23A99E525FC5CAC00795588 /* RunSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunSession.swift; sourceTree = "<group>"; };
 		B286142F257F3B650085F26F /* RunBuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RunBuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2861432257F3B650085F26F /* RunBuddyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunBuddyApp.swift; sourceTree = "<group>"; };
 		B2861434257F3B650085F26F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -106,6 +109,7 @@
 		B29F1E2B25917D5500EE42D5 /* RunCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunCard.swift; sourceTree = "<group>"; };
 		B29F1E372591844A00EE42D5 /* Color+Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Asset.swift"; sourceTree = "<group>"; };
 		B29F1E3D25918AE700EE42D5 /* RunTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunTile.swift; sourceTree = "<group>"; };
+		B2E0C07D25981BD5007C7971 /* Health.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Health.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +212,8 @@
 				B2861474257F3BEE0085F26F /* run.json */,
 				B2861475257F3BEE0085F26F /* Run.swift */,
 				B29F1E252591682000EE42D5 /* RunData.swift */,
+				B23A99E525FC5CAC00795588 /* RunSession.swift */,
+				B2E0C07D25981BD5007C7971 /* Health.swift */,
 				B2861480257F3D350085F26F /* UIColor+Asset.swift */,
 				B29F1E372591844A00EE42D5 /* Color+Asset.swift */,
 			);
@@ -362,6 +368,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2861454257F3B660085F26F /* NotificationController.swift in Sources */,
+				B2E0C07F25981BD5007C7971 /* Health.swift in Sources */,
+				B23A99E725FC5CAC00795588 /* RunSession.swift in Sources */,
 				B286147A257F3BEE0085F26F /* Run.swift in Sources */,
 				B2861452257F3B660085F26F /* ContentView.swift in Sources */,
 				B2861458257F3B660085F26F /* ComplicationController.swift in Sources */,

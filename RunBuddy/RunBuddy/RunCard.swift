@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RunCard: View {
     @Binding var run: Run
-    
+
     var runTitle: String {
         let runSuffix = run.runInMinutes > 1 ? "s" : ""
         return "\(run.runInMinutes) Minute\(runSuffix)"
@@ -46,5 +46,6 @@ struct RunCard: View {
 struct RunCard_Previews: PreviewProvider {
     static var previews: some View {
         RunCard(run: .constant(Run.data[0]))
+            .previewDevice(PreviewDevice(rawValue: "Apple Watch Series 5 - 44mm"))
     }
 }

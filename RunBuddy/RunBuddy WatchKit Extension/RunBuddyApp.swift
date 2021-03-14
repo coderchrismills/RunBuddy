@@ -9,10 +9,14 @@ import SwiftUI
 
 @main
 struct RunBuddyApp: App {
+    @ObservedObject private var data = RunData()
     @SceneBuilder var body: some Scene {
         WindowGroup {
             NavigationView {
-                ContentView()
+                ContentView(runs: $data.runs, selectedIndex: 0)
+                    .onAppear {
+                        data.load()
+                    }
             }
         }
 
