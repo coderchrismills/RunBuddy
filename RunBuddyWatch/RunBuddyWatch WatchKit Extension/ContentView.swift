@@ -12,51 +12,28 @@ struct ContentView: View {
     @State var selectedIndex: Int = 0
     @State var isLinkActive = false
     @State private var navBarHidden = true
+    @EnvironmentObject var runSession: RunSession
     
     var body: some View {
         NavigationView {
             if runs.isEmpty {
                 Text("No available runs")
             } else {
-                VStack() {
-                    GeometryReader { geometry in
-                        TabView(selection: $selectedIndex) {
-                            ForEach(runs) { run in
-                                if let runIndex = getRunIndex(for: run) {
-                                    RunCard(run: binding(for: run))
-                                        .frame(maxHeight: geometry.size.height * 0.8)
-                                        .padding()
-                                        .padding(.top, -58)
-                                        .tag(runIndex)
-                                }
+                List {
+                    ForEach(runs) { run in
+                        if run.type == .run {
+                            NavigationLink(destination: ActiveRun(run: binding(for: run))) {
+                                RunCard(run: binding(for: run))
                             }
+                        } else {
+                            RunCard(run: binding(for: run))
                         }
                     }
-                    .tabViewStyle(CarouselTabViewStyle())
-                    
-                    Button(action: {
-                        self.isLinkActive = true
-                        self.navBarHidden = true
-                    }) {
-                        Text("GO")
-                            .font(.title2)
-                            .foregroundColor(Color.white)
-                    }
-                    .buttonStyle(BorderedButtonStyle())
-                    .padding(2)
-                    .background(runs[selectedIndex].isRunDay ? Color.accent : Color.accentDisabled)
-                    .clipShape(RoundedRectangle(cornerRadius: 21, style: .continuous))
-                    .frame(maxHeight: 48)
-                    .padding(.all)
-                    .disabled(runs[selectedIndex].isRunDay == false)
-  
+                    .listRowInsets(EdgeInsets())
+                    .listRowBackground(Color.clear)
                 }
                 .ignoresSafeArea()
                 .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
-                .background(NavigationLink(destination: ActiveRun(run: $runs[selectedIndex]), isActive: $isLinkActive) {
-                    EmptyView()
-                }
-                .hidden())
             }
         }
         .navigationBarTitle("")
@@ -83,6 +60,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(runs: .constant(Run.data), selectedIndex: 0)
+        ContentView(runs: .constant(Run.data)).environmentObject(RunSession())
     }
 }

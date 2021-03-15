@@ -7,6 +7,7 @@
 
 import Foundation
 import HealthKit
+import WatchKit
 
 protocol HealthDelegate {
     func onWalkingStatisticUpdated(miles: Double)
@@ -25,16 +26,14 @@ class Health: NSObject {
     
     func requestAccess(completion: @escaping (Bool, Error?) -> Void) {
         healthStore.requestAuthorization(toShare: typesToShare, read: typesToRead, completion: { (success, error) in
-            
             if (success) {
                 self.createSession()
             }
-            
             completion(success, error)
         })
     }
     
-    private func createSession() {
+    func createSession() {
         configuration.activityType = .running
         configuration.locationType = .outdoor
         do {
@@ -45,18 +44,41 @@ class Health: NSObject {
             builder?.dataSource = HKLiveWorkoutDataSource(healthStore: healthStore,
                                                          workoutConfiguration: configuration)
         } catch {
-            
+            print(error.localizedDescription)
         }
     }
     
-    func begin(run: Run) {
-
+    func begin() {
+        session?.startActivity(with: Date())
+        builder?.beginCollection(withStart: Date()) { (success, error) in
+            if let err = error {
+                print(err.localizedDescription)
+            }
+        }
+    }
+    
+    func end() {
+        session?.end()
+    }
+    
+    func pause() {
+        session?.pause()
+    }
+    
+    func resume() {
+        session?.resume()
     }
 }
 
 extension Health: HKWorkoutSessionDelegate {
     func workoutSession(_ workoutSession: HKWorkoutSession, didChangeTo toState: HKWorkoutSessionState, from fromState: HKWorkoutSessionState, date: Date) {
-        
+        if toState == .ended {
+            builder?.endCollection(withEnd: Date()) { (success, error) in
+                self.builder?.finishWorkout { (workout, error) in
+
+                }
+            }
+        }
     }
     
     func workoutSession(_ workoutSession: HKWorkoutSession, didFailWithError error: Error) {

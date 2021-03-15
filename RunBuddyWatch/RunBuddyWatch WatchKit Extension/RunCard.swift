@@ -23,63 +23,66 @@ struct RunCard: View {
     }
     
     var body: some View {
-        VStack(alignment: .center, spacing: 2.0) {
-            HStack {
-                run.icon
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .scaledToFit()
-                    .padding(2)
-                    .frame(maxWidth: 48, maxHeight: 48)
-                Text("\(dayOfMonth)")
-                    .font(.title2)
-                    .fontWeight(.light)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.7)
-                    
-            }
-            
+        VStack(alignment: .leading, spacing: 2.0) {
+            Text("Week \(run.week): \(dayOfMonth)")
+                .font(.caption2)
+                .minimumScaleFactor(0.8)
+                .lineLimit(1)
             switch run.type {
             case .run:
-                Divider()
-                
-                HStack {
-                    Text("Run:")
-                        .font(.body)
+                HStack() {
+                    Image("run")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(maxWidth: 22)
+                    
                     Text("\(runTitle)")
-                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                }
+                }.font(.body)
                 
                 HStack {
-                    Text("Walk:")
-                        .font(.body)
+                    Image("walk")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(maxWidth: 22)
                     Text("\(walkTitle)")
-                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                }
+                }.font(.body)
                 
                 HStack {
-                    Text("Repeat:")
-                        .font(.body)
-                    Text("\(run.repeatCount)x")
-                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                }
+                    if run.repeatCount > 0 {
+                        Image(systemName: "stopwatch.fill")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(maxWidth: 22)
+                        Text("\(run.repeatCount)x")
+                    } else {
+                        Image(systemName: "map.fill")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(maxWidth: 22)
+                        Text("\(run.mileTarget) miles")
+                    }
+                    
+                }.font(.body)
             case .crossTrain:
                 Text("Cross Train")
+                    .font(.body)
             case .rest:
                 Text("Rest")
+                    .font(.body)
             }
             
         }
-        .padding(8)
-        .font(.body)
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 4.0)
+        .padding()
         .foregroundColor(Color.white)
         .background(run.color)
-        .cornerRadius(12)
+        .cornerRadius(8)
     }
 }
 
 struct RunCard_Previews: PreviewProvider {
     static var previews: some View {
-        RunCard(run: .constant(Run.data[0]))
+        RunCard(run: .constant(Run.data[1]))
     }
 }

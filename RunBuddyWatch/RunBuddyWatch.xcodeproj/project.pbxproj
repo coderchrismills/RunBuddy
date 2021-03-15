@@ -25,6 +25,8 @@
 		B23A9A3925FC6B7700795588 /* RunCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23A9A3025FC6B7700795588 /* RunCard.swift */; };
 		B23A9A3A25FC6B7700795588 /* Health.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23A9A3125FC6B7700795588 /* Health.swift */; };
 		B23A9A4125FDC79300795588 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B23A9A0125FC6B1A00795588 /* Assets.xcassets */; };
+		B23A9A5025FEA95600795588 /* run.json in Resources */ = {isa = PBXBuildFile; fileRef = B23A9A2E25FC6B7700795588 /* run.json */; };
+		B23A9A5725FED59A00795588 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B23A9A5625FED59A00795588 /* HealthKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +92,8 @@
 		B23A9A2F25FC6B7700795588 /* Run.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Run.swift; sourceTree = "<group>"; };
 		B23A9A3025FC6B7700795588 /* RunCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunCard.swift; sourceTree = "<group>"; };
 		B23A9A3125FC6B7700795588 /* Health.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Health.swift; sourceTree = "<group>"; };
+		B23A9A5425FED59A00795588 /* RunBuddyWatch WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "RunBuddyWatch WatchKit Extension.entitlements"; sourceTree = "<group>"; };
+		B23A9A5625FED59A00795588 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS7.2.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B23A9A5725FED59A00795588 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +114,7 @@
 				B23A9A0025FC6B1900795588 /* RunBuddyWatch WatchKit App */,
 				B23A9A0C25FC6B1A00795588 /* RunBuddyWatch WatchKit Extension */,
 				B23A99F925FC6B1900795588 /* Products */,
+				B23A9A5525FED59A00795588 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -134,17 +140,18 @@
 		B23A9A0C25FC6B1A00795588 /* RunBuddyWatch WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
+				B23A9A5425FED59A00795588 /* RunBuddyWatch WatchKit Extension.entitlements */,
 				B23A9A0F25FC6B1A00795588 /* RunBuddyWatchApp.swift */,
 				B23A9A0D25FC6B1A00795588 /* ContentView.swift */,
+				B23A9A2925FC6B7700795588 /* ActiveRun.swift */,
 				B23A9A1125FC6B1A00795588 /* ComplicationController.swift */,
 				B23A9A2C25FC6B7700795588 /* Color+Asset.swift */,
 				B23A9A3125FC6B7700795588 /* Health.swift */,
 				B23A9A2E25FC6B7700795588 /* run.json */,
 				B23A9A2F25FC6B7700795588 /* Run.swift */,
 				B23A9A3025FC6B7700795588 /* RunCard.swift */,
-				B23A9A2925FC6B7700795588 /* ActiveRun.swift */,
-				B23A9A2D25FC6B7700795588 /* RunData.swift */,
 				B23A9A2B25FC6B7700795588 /* RunSession.swift */,
+				B23A9A2D25FC6B7700795588 /* RunData.swift */,
 				B23A9A2A25FC6B7700795588 /* UIColor+Asset.swift */,
 				B23A9A1325FC6B1A00795588 /* Assets.xcassets */,
 				B23A9A1825FC6B1A00795588 /* Info.plist */,
@@ -159,6 +166,14 @@
 				B23A9A1625FC6B1A00795588 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B23A9A5525FED59A00795588 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B23A9A5625FED59A00795588 /* HealthKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,6 +283,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B23A9A0225FC6B1A00795588 /* Assets.xcassets in Resources */,
+				B23A9A5025FEA95600795588 /* run.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +453,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "RunBuddyWatch WatchKit Extension/RunBuddyWatch WatchKit Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"RunBuddyWatch WatchKit Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = K2DYHV494C;
@@ -461,6 +478,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "RunBuddyWatch WatchKit Extension/RunBuddyWatch WatchKit Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"RunBuddyWatch WatchKit Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = K2DYHV494C;
